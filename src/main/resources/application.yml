@@ -6,7 +6,10 @@ spring:
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
-
+  liquibase:
+    changelog: classpath:liquibase/db.changelog.yaml
+    enabled: true
+    default-schema: notes
 
 logging:
   level:
