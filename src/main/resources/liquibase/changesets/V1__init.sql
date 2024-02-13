@@ -1,17 +1,17 @@
-create table if not exists users
+CREATE TABLE IF NOT EXISTS USERS
 (
-    id bigserial primary key,
-    name varchar(255) not null,
-    username varchar(255) not null unique,
-    password varchar(255) not null
+    ID BIGSERIAL PRIMARY KEY,
+    NAME VARCHAR(255) NOT NULL,
+    USERNAME VARCHAR(255) NOT NULL UNIQUE,
+    PASSWORD VARCHAR(255) NOT NULL
 );
 
-create table if not exists users_roles
+CREATE TABLE IF NOT EXISTS USERS_ROLES
 (
-    user_id bigint not null,
-    role varchar(255) not null,
-    primary key (user_id, role),
-    constraint fk_users_roles_users foreign key (user_id) references users (id) on delete cascade on update no action
+    USER_ID BIGINT NOT NULL,
+    ROLE VARCHAR(255) NOT NULL,
+    PRIMARY KEY (USER_ID, ROLE),
+    CONSTRAINT FK_USERS_ROLES_USERS FOREIGN KEY (USER_ID) REFERENCES USERS (ID) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
 CREATE SEQUENCE USER_SEQ
