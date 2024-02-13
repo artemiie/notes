@@ -20,6 +20,5 @@ public record UserDto(Long id,
                       @NotNull(message = "Username must be not null.")
                       @NotEmpty(message = "Username must be not empty.")
                       @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-                      String passwordConfirmation,
-                      Set<Role> roles) {
+                      String passwordConfirmation) {
 }

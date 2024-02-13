@@ -4,6 +4,7 @@ import com.notes.exception.InvalidTokenException;
 import com.notes.exception.ResourceAlreadyExistsException;
 import com.notes.jwt.JwtService;
 import com.notes.jwt.TokenType;
+import com.notes.model.Role;
 import com.notes.model.User;
 import com.notes.security.model.AuthRequest;
 import com.notes.security.model.AuthResponse;
@@ -32,6 +33,7 @@ public class AuthServiceImpl implements AuthService {
                     "User with username[%s] already exists.".formatted(user.getUsername()));
         }
 
+        user.getRoles().add(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.create(user);
     }
