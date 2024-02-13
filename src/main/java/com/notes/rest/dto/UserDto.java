@@ -1,11 +1,9 @@
 package com.notes.rest.dto;
 
-import com.notes.model.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-
-import java.util.Set;
 
 public record UserDto(Long id,
                       @NotNull(message = "Username must be not null.")
@@ -17,9 +15,11 @@ public record UserDto(Long id,
                       String username,
                       @NotNull(message = "Username must be not null.")
                       @NotEmpty(message = "Username must be not empty.")
+                      @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
                       String password,
                       @NotNull(message = "Username must be not null.")
                       @NotEmpty(message = "Username must be not empty.")
+                      @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
                       String passwordConfirmation,
                       Set<Role> roles) {
 }
