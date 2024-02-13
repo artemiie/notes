@@ -31,7 +31,10 @@ public class SecurityConfiguration {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 //No session will be created or used by Spring Security
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(configurer -> configurer.anyRequest().permitAll())
+                .authorizeHttpRequests(configurer -> configurer
+                        .requestMatchers("/api/v1/notes/**").authenticated()
+                        .requestMatchers("/api/v1/auth/**").permitAll()
+                )
                 .addFilterBefore(new JwtTokenFilter(jwtService, userDetailsService), UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
