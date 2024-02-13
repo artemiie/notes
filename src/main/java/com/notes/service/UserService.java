@@ -7,4 +7,6 @@ public interface UserService {
     User create(User use);
 
     boolean existsByUsername(String username);
+
+    User findBy(String username);
 }
