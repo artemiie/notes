@@ -16,3 +16,11 @@ logging:
     org:
       springframework:
         web: TRACE
+
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    access: ${JWT_ACCESS_DURATION}
+    activation: ${JWT_ACTIVATION_DURATION}
+    refresh: ${JWT_REFRESH_DURATION}
+    restore: ${JWT_RESTORE_DURATION}
