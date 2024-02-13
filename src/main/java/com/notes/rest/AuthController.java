@@ -20,7 +20,7 @@ public class AuthController {
     private final UserMapper userMapper;
     private final AuthService authService;
 
-    @PostMapping
+    @PostMapping("/registration")
     public void register(@RequestBody @Validated final UserDto userDto) {
         User user = userMapper.toEntity(userDto);
         authService.register(user);
