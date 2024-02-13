@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +40,15 @@ public class JwtServiceImpl implements JwtService {
                 TokenParameters.builder(username,
                                 jwtProperties.getRefresh())
                         .type(TokenType.REFRESH)
+                        .build());
+    }
+
+    @Override
+    public String generateRestoreToken(String username) {
+        return generate(
+                TokenParameters.builder(username,
+                                jwtProperties.getRestore())
+                        .type(TokenType.RESTORE)
                         .build());
     }
 
@@ -69,5 +79,11 @@ public class JwtServiceImpl implements JwtService {
     public HashMap<String, Object> fields(final String token) {
         Jws<Claims> claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
         return new HashMap<>(claims.getPayload());
+    }
+
+    @Override
+    public String field(String token, String by) {
+        Map<String, Object> fields = fields(token);
+        return (String) fields.get("subject");
     }
 }

@@ -1,10 +1,14 @@
 package com.notes.service.impl;
 
+import com.notes.exception.InvalidTokenException;
 import com.notes.exception.ResourceAlreadyExistsException;
+import com.notes.jwt.JwtService;
+import com.notes.jwt.TokenType;
 import com.notes.model.User;
 import com.notes.security.model.AuthRequest;
 import com.notes.security.model.AuthResponse;
-import com.notes.jwt.JwtService;
+import com.notes.security.model.ResetRequest;
+import com.notes.security.model.RestoreRequest;
 import com.notes.service.AuthService;
 import com.notes.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +46,26 @@ public class AuthServiceImpl implements AuthService {
                 .userId(user.getId())
                 .access(jwtService.generateAccessToken(authRequest.getUsername()))
                 .refresh(jwtService.generateRefreshToken(authRequest.getUsername())).build();
+    }
+
+    @Override
+    public void reset(final ResetRequest request) {
+        if (!jwtService.isValid(request.getToken(), TokenType.RESTORE)) {
+            throw new InvalidTokenException();
+        }
+        String username = jwtService.field(request.getToken(), "subject");
+        User user = userService.findBy(username);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        userService.update(user);
+    }
+
+    @Override
+    public String restore(final RestoreRequest request) {
+        User user = userService.findBy(request.getUsername());
+
+        String restoreToken = jwtService.generateRestoreToken(user.getUsername());
+
+        return restoreToken;
+        //send restore token throw email
     }
 }

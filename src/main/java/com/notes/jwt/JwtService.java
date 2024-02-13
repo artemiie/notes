@@ -10,8 +10,11 @@ public interface JwtService {
     String generateAccessToken(String username);
 
     String generateRefreshToken(String username);
+    String generateRestoreToken(String username);
 
     boolean isValid(String token, TokenType type);
 
     HashMap<String, Object> fields(String token);
+
+    String field(String token, String by);
 }

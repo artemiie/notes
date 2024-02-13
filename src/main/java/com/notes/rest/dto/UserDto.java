@@ -1,6 +1,7 @@
 package com.notes.rest.dto;
 
 import com.notes.model.Role;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,6 +11,7 @@ public record UserDto(Long id,
                       @NotNull(message = "Username must be not null.")
                       @NotEmpty(message = "Username must be not empty.")
                       String name,
+                      @Email(message = "Username must be a valid email.")
                       @NotNull(message = "Username must be not null.")
                       @NotEmpty(message = "Username must be not empty.")
                       String username,
