@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "f4eca04d-4141-4e87-adc2-fb1b92f6a05e",
+		"name": "notes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "REGISTRATION",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"anastasia.fliostor\",\r\n    \"username\":\"anastasia.fliostor@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"passwordConfirmation\":\"123456\",\r\n    \"roles\": [\"ADMIN\",\"USER\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"username\":\"artemie.fliostor@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RESTORE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"artemie.fliostor@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/restore",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RESET",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\":\"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwNzkzMDUxMDE4Mywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc4MzA1MTAxODMsInR5cGUiOiJSRVNUT1JFIiwiaWF0IjoxNzA3ODMwNTEwLCJleHAiOjE3MDc5MzA1MTB9.2NeMiILl7YLj4G3JliOjZWNWLEJsqfiRntiB3vAvHU0ZC7CMLD24YO7ZvvIIq7vrf_D4ZYd0PZKdPrCZnTf8bA\",\r\n    \"password\":\"qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NOTES",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmFzdGFzaWEuZmxpb3N0b3JAZ21haWwuY29tIiwiZXhwaXJlZEF0IjoxNzA3OTMyNzc0NDM5LCJzdWJqZWN0IjoiYW5hc3Rhc2lhLmZsaW9zdG9yQGdtYWlsLmNvbSIsImlzc3VlZEF0IjoxNzA3ODMyNzc0NDM5LCJ0eXBlIjoiQUNDRVNTIiwiaWF0IjoxNzA3ODMyNzc0LCJleHAiOjE3MDc5MzI3NzR9.232m6nXICttLTXwdlUim6TXv0cCJEHwyGBKq9Q_9iGHUYsZNDY4EtF6CcXYZhJeFwZkbvW1P6FbgrvwxEMzmAQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"New note5\",\r\n    \"body\":\"Note body with random text.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwNzkzNjc2OTg4Nywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc4MzY3Njk4ODcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc4MzY3NjksImV4cCI6MTcwNzkzNjc2OX0.cJRYXd-OtmooLOQsE6xCPMXOECGEMTivMAQMP80K1dc63KIyeql59AGdoXmg5Ag3hvi6R1tDyFCPxDscdP9cZQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
