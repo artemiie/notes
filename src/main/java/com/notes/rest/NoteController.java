@@ -8,6 +8,7 @@ import com.notes.rest.dto.mapper.NoteMapper;
 import com.notes.security.SecurityService;
 import com.notes.service.NoteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +21,10 @@ public class NoteController {
   private final SecurityService securityService;
 
   @GetMapping("/{id}")
-  public NoteDto find(@PathVariable final Long id) {
-    Note note = noteService.findBy(id);
-    User currentLoggedInUser = securityService.getCurrentLoggedUser();
-    if (!currentLoggedInUser.getId().equals(note.getUser().getId())) {
-      throw new AccessDeniedException();
-    }
+  @PreAuthorize("#userId == authentication.principal.id")
+  public NoteDto find(@PathVariable final Long id,
+                      @RequestHeader("USER_ID") final Long userId) {
+    Note note = noteService.findBy(id, userId);
     return noteMapper.toDto(note);
   }
 
