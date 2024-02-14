@@ -1,7 +1,5 @@
 package com.notes.model;
 
-import java.time.OffsetDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,14 +29,14 @@ public class Note {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id", nullable = false)
-  public User user;
+  private User user;
 
   @Column(name = "title")
-  public String title;
+  private String title;
 
   @Column(name = "body")
-  public String body;
+  private String body;
 
   @Column(name = "creation_date")
-  public OffsetDateTime creationDate;
+  private OffsetDateTime creationDate;
 }
