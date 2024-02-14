@@ -4,10 +4,9 @@ import com.notes.exception.ResourceNotFoundException;
 import com.notes.model.Note;
 import com.notes.repository.NoteRepository;
 import com.notes.service.NoteService;
+import java.time.OffsetDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.OffsetDateTime;
 
 @Service
 @RequiredArgsConstructor

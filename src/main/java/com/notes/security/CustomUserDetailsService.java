@@ -1,6 +1,5 @@
 package com.notes.security;
 
-
 import com.notes.model.User;
 import com.notes.security.model.CustomUserDetails;
 import com.notes.service.UserService;

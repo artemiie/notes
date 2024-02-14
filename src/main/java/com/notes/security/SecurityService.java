@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SecurityService {
-    private final UserService userService;
+  private final UserService userService;
 
-    public User getCurrentLoggedUser() {
-        Authentication currentLoggedUser = SecurityContextHolder.getContext().getAuthentication();
-        return userService.findBy(currentLoggedUser.getName());
-    }
+  public User getCurrentLoggedUser() {
+    Authentication currentLoggedUser = SecurityContextHolder.getContext().getAuthentication();
+    return userService.findBy(currentLoggedUser.getName());
+  }
 }

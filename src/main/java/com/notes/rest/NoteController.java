@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/notes")
 @RequiredArgsConstructor
 public class NoteController {
-    private final NoteMapper noteMapper;
-    private final NoteService noteService;
-    private final SecurityService securityService;
+  private final NoteMapper noteMapper;
+  private final NoteService noteService;
+  private final SecurityService securityService;
 
-    @GetMapping("/{id}")
-    public NoteDto find(@PathVariable final Long id) {
-        Note note = noteService.findBy(id);
-        User currentLoggedInUser = securityService.getCurrentLoggedUser();
-        if (!currentLoggedInUser.getId().equals(note.getUser().getId())) {
-            throw new AccessDeniedException();
-        }
-        return noteMapper.toDto(note);
+  @GetMapping("/{id}")
+  public NoteDto find(@PathVariable final Long id) {
+    Note note = noteService.findBy(id);
+    User currentLoggedInUser = securityService.getCurrentLoggedUser();
+    if (!currentLoggedInUser.getId().equals(note.getUser().getId())) {
+      throw new AccessDeniedException();
     }
+    return noteMapper.toDto(note);
+  }
 
-    @PostMapping()
-    public void create(@RequestBody @Validated final NoteDto noteDto) {
-        User currentLoggedInUser = securityService.getCurrentLoggedUser();
-        Note note = noteMapper.toEntity(noteDto);
-        note.setUser(currentLoggedInUser);
-        noteService.create(note);
-    }
+  @PostMapping()
+  public void create(@RequestBody @Validated final NoteDto noteDto) {
+    User currentLoggedInUser = securityService.getCurrentLoggedUser();
+    Note note = noteMapper.toEntity(noteDto);
+    note.setUser(currentLoggedInUser);
+    noteService.create(note);
+  }
 }

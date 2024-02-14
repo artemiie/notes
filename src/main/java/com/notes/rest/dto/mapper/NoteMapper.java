@@ -7,6 +7,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface NoteMapper extends Mappable<Note, NoteDto> {
-    @Mapping(target = "userId", expression = "java(note.getUser().getId())")
-    NoteDto toDto(Note note);
+  @Mapping(target = "userId", expression = "java(note.getUser().getId())")
+  NoteDto toDto(Note note);
 }

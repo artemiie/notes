@@ -10,30 +10,34 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    @Override
-    public User create(final User user) {
-        return userRepository.save(user);
-    }
+  @Override
+  public User create(final User user) {
+    return userRepository.save(user);
+  }
 
-    @Override
-    public User update(User user) {
-        User userOnDb = findBy(user.getUsername());
+  @Override
+  public User update(User user) {
+    User userOnDb = findBy(user.getUsername());
 
-        user.setId(userOnDb.getId());
+    user.setId(userOnDb.getId());
 
-        return userRepository.save(user);
-    }
+    return userRepository.save(user);
+  }
 
-    @Override
-    public boolean existsByUsername(final String username) {
-        return userRepository.existsByUsername(username);
-    }
+  @Override
+  public boolean existsByUsername(final String username) {
+    return userRepository.existsByUsername(username);
+  }
 
-    @Override
-    public User findBy(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User with username[%s] not found.".formatted(username)));
-    }
-
+  @Override
+  public User findBy(String username) {
+    return userRepository
+        .findByUsername(username)
+        .orElseThrow(
+            () ->
+                new ResourceNotFoundException(
+                    "User with username[%s] not found.".formatted(username)));
+  }
 }

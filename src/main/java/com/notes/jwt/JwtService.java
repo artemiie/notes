@@ -1,20 +1,20 @@
 package com.notes.jwt;
 
-
 import java.util.HashMap;
 
 public interface JwtService {
 
-    String generate(TokenParameters params);
+  String generate(TokenParameters params);
 
-    String generateAccessToken(String username);
+  String generateAccessToken(String username);
 
-    String generateRefreshToken(String username);
-    String generateRestoreToken(String username);
+  String generateRefreshToken(String username);
 
-    boolean isValid(String token, TokenType type);
+  String generateRestoreToken(String username);
 
-    HashMap<String, Object> fields(String token);
+  boolean isValid(String token, TokenType type);
 
-    String field(String token, String by);
+  HashMap<String, Object> fields(String token);
+
+  String field(String token, String by);
 }

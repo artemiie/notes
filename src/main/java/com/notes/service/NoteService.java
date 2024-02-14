@@ -3,10 +3,11 @@ package com.notes.service;
 import com.notes.model.Note;
 
 public interface NoteService {
-    Note findBy(Long noteId, Long userId);
-    Note findBy(Long noteId);
+  Note findBy(Long noteId, Long userId);
 
-    Note create(Note note);
+  Note findBy(Long noteId);
 
-    Note update(Note note);
+  Note create(Note note);
+
+  Note update(Note note);
 }

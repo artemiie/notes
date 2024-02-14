@@ -7,11 +7,11 @@ import com.notes.security.model.ResetRequest;
 import com.notes.security.model.RestoreRequest;
 
 public interface AuthService {
-    void register(User user);
+  void register(User user);
 
-    AuthResponse login(AuthRequest authRequest);
+  AuthResponse login(AuthRequest authRequest);
 
-    void reset(ResetRequest request);
+  void reset(ResetRequest request);
 
-    String restore(RestoreRequest request);
+  String restore(RestoreRequest request);
 }
