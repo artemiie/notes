@@ -1,12 +1,13 @@
 package com.notes.rest;
 
-import com.notes.exception.AccessDeniedException;
 import com.notes.model.Note;
 import com.notes.model.User;
 import com.notes.rest.dto.NoteDto;
 import com.notes.rest.dto.mapper.NoteMapper;
 import com.notes.security.SecurityService;
 import com.notes.service.NoteService;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -21,10 +22,10 @@ public class NoteController {
   private final SecurityService securityService;
 
   @GetMapping("/{id}")
-  @PreAuthorize("#userId == authentication.principal.id")
-  public NoteDto find(@PathVariable final Long id,
-                      @RequestHeader("USER_ID") final Long userId) {
-    Note note = noteService.findBy(id, userId);
+  @PreAuthorize("@customSecurityExpresion.canAccessNote(#noteId, #userId)")
+  public NoteDto find(
+      @PathVariable("id") final String noteId, @RequestHeader("USER_ID") final Long userId) {
+    Note note = noteService.findBy(Long.valueOf(noteId), userId);
     return noteMapper.toDto(note);
   }
 
@@ -45,5 +46,11 @@ public class NoteController {
     Note note = noteMapper.toEntity(noteDto);
     note = noteService.update(note, userId);
     return noteMapper.toDto(note);
+  }
+
+  @DeleteMapping("/{id}")
+  @PreAuthorize("@customSecurityExpresion.canAccessNote(#noteId)")
+  public void delete(@PathVariable("id") @NotNull @NotEmpty final String noteId) {
+    noteService.delete(Long.valueOf(noteId));
   }
 }

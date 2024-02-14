@@ -38,8 +38,6 @@ public class NoteServiceImpl implements NoteService {
   }
 
   @Override
-  public Note update(Note note) {
-    return null;
   public Note update(Note note, Long userId) {
     Note noteOnDb = findBy(note.getId(), userId);
     note.setUser(noteOnDb.getUser());
@@ -47,5 +45,8 @@ public class NoteServiceImpl implements NoteService {
     return noteRepository.save(note);
   }
 
+  @Override
+  public void delete(Long noteId) {
+    noteRepository.deleteById(noteId);
   }
 }
