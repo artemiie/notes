@@ -11,4 +11,6 @@ public interface UserService {
   boolean existsByUsername(String username);
 
   User findBy(String username);
+
+  boolean isNoteOwner(Long userId, Long noteId);
 }

@@ -40,4 +40,9 @@ public class UserServiceImpl implements UserService {
                 new ResourceNotFoundException(
                     "User with username[%s] not found.".formatted(username)));
   }
+
+  @Override
+  public boolean isNoteOwner(Long userId, Long noteId) {
+    return userRepository.isNoteOwner(userId, noteId);
+  }
 }

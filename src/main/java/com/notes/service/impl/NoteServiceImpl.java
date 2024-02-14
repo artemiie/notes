@@ -40,5 +40,12 @@ public class NoteServiceImpl implements NoteService {
   @Override
   public Note update(Note note) {
     return null;
+  public Note update(Note note, Long userId) {
+    Note noteOnDb = findBy(note.getId(), userId);
+    note.setUser(noteOnDb.getUser());
+    note.setCreationDate(noteOnDb.getCreationDate());
+    return noteRepository.save(note);
+  }
+
   }
 }

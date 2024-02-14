@@ -35,4 +35,15 @@ public class NoteController {
     note.setUser(currentLoggedInUser);
     noteService.create(note);
   }
+
+  @PutMapping()
+  @PreAuthorize(
+      "@customSecurityExpresion.canAccessNote(#noteDto.id, #userId) && "
+          + "#userId == authentication.principal.id")
+  public NoteDto update(
+      @RequestBody @Validated final NoteDto noteDto, @RequestHeader("USER_ID") final Long userId) {
+    Note note = noteMapper.toEntity(noteDto);
+    note = noteService.update(note, userId);
+    return noteMapper.toDto(note);
+  }
 }
