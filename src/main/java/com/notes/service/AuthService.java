@@ -13,7 +13,7 @@ public interface AuthService {
 
   void reset(ResetRequest request);
 
-  String restore(RestoreRequest request);
+  void restore(RestoreRequest request);
 
   void confirm(String token);
 }

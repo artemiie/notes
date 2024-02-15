@@ -92,13 +92,21 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
-  public String restore(final RestoreRequest request) {
+  public void restore(final RestoreRequest request) {
     User user = userService.findBy(request.getUsername());
 
     String restoreToken = jwtService.generateRestoreToken(user.getUsername());
 
-    return restoreToken;
-    // send restore token throw email
+    mailService.sendEmail(
+        MailType.RESTORE,
+        new Properties() {
+          {
+            put("restoreToken", restoreToken);
+            put("recipientEmail", user.getUsername());
+            put("recipientName", user.getName());
+          }
+        });
+  }
 
   @Override
   public void confirm(final String token) {

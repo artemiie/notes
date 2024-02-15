@@ -33,8 +33,8 @@ public class AuthController {
   }
 
   @PostMapping("/restore")
-  public String restore(@RequestBody final RestoreRequest request) {
-    return authService.restore(request);
+  public void restore(@RequestBody final RestoreRequest request) {
+    authService.restore(request);
   }
 
   @PostMapping("/reset")
