@@ -45,4 +45,11 @@ public class UserServiceImpl implements UserService {
   public boolean isNoteOwner(Long userId, Long noteId) {
     return userRepository.isNoteOwner(userId, noteId);
   }
+
+  @Override
+  public void enable(final String username) {
+    User user = findBy(username);
+    user.setEnabled(true);
+    update(user);
+  }
 }

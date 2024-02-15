@@ -8,12 +8,11 @@ import com.notes.security.model.AuthResponse;
 import com.notes.security.model.ResetRequest;
 import com.notes.security.model.RestoreRequest;
 import com.notes.service.AuthService;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -41,5 +40,10 @@ public class AuthController {
   @PostMapping("/reset")
   public void reset(@RequestBody final ResetRequest request) {
     authService.reset(request);
+  }
+
+  @PostMapping("/confirm")
+  public void confirm(@RequestBody() @NotEmpty @NotNull final String token) {
+    authService.confirm(token);
   }
 }

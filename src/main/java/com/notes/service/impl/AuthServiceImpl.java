@@ -40,6 +40,18 @@ public class AuthServiceImpl implements AuthService {
     user.getRoles().add(Role.USER);
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     userService.create(user);
+
+    String activationToken = jwtService.generateActivationToken(user.getUsername());
+
+    mailService.sendEmail(
+        MailType.ACTIVATION,
+        new Properties() {
+          {
+            put("activationToken", activationToken);
+            put("recipientEmail", user.getUsername());
+            put("recipientName", user.getName());
+          }
+        });
   }
 
   @Override
@@ -87,5 +99,14 @@ public class AuthServiceImpl implements AuthService {
 
     return restoreToken;
     // send restore token throw email
+
+  @Override
+  public void confirm(final String token) {
+    if (jwtService.isValid(token, TokenType.ACTIVATION)) {
+      String username = jwtService.field(token, "subject");
+      userService.enable(username);
+    } else {
+      throw new InvalidTokenException();
+    }
   }
 }

@@ -13,4 +13,6 @@ public interface UserService {
   User findBy(String username);
 
   boolean isNoteOwner(Long userId, Long noteId);
+
+  void enable(String username);
 }

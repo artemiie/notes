@@ -51,6 +51,13 @@ public class JwtServiceImpl implements JwtService {
                         .build());
     }
 
+  @Override
+  public String generateActivationToken(String username) {
+     return generate(
+        TokenParameters.builder(username, jwtProperties.getActivation())
+            .type(TokenType.ACTIVATION)
+            .build());
+  }
 
     @Override
     public String generate(final TokenParameters params) {

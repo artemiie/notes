@@ -36,4 +36,5 @@ public class User implements Serializable {
     private Set<Role> roles = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private List<Note> notes;
+  private boolean enabled;
 }
