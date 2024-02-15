@@ -4,6 +4,8 @@ import com.notes.exception.InvalidTokenException;
 import com.notes.exception.ResourceAlreadyExistsException;
 import com.notes.jwt.JwtService;
 import com.notes.jwt.TokenType;
+import com.notes.mail.MailService;
+import com.notes.mail.MailType;
 import com.notes.model.Role;
 import com.notes.model.User;
 import com.notes.security.model.AuthRequest;
@@ -12,6 +14,7 @@ import com.notes.security.model.ResetRequest;
 import com.notes.security.model.RestoreRequest;
 import com.notes.service.AuthService;
 import com.notes.service.UserService;
+import java.util.Properties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +26,7 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
   private final JwtService jwtService;
   private final UserService userService;
+  private final MailService mailService;
   private final PasswordEncoder passwordEncoder;
   private final AuthenticationManager authenticationManager;
 
@@ -45,10 +49,22 @@ public class AuthServiceImpl implements AuthService {
             authRequest.getUsername(), authRequest.getPassword()));
     User user = userService.findBy(authRequest.getUsername());
 
+    String accessToken = jwtService.generateAccessToken(authRequest.getUsername());
+    String refreshToken = jwtService.generateRefreshToken(authRequest.getUsername());
+
+    mailService.sendEmail(
+        MailType.LOGIN,
+        new Properties() {
+          {
+            put("recipientEmail", user.getUsername());
+            put("recipientName", user.getName());
+          }
+        });
+
     return AuthResponse.builder()
         .userId(user.getId())
-        .access(jwtService.generateAccessToken(authRequest.getUsername()))
-        .refresh(jwtService.generateRefreshToken(authRequest.getUsername()))
+        .access(accessToken)
+        .refresh(refreshToken)
         .build();
   }
 
