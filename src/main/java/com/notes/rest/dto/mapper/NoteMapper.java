@@ -1,6 +1,6 @@
 package com.notes.rest.dto.mapper;
 
-import com.notes.model.Note;
+import com.notes.model.note.Note;
 import com.notes.rest.dto.NoteDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

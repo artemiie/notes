@@ -1,6 +1,6 @@
 package com.notes.service;
 
-import com.notes.model.User;
+import com.notes.model.user.User;
 import com.notes.security.model.AuthRequest;
 import com.notes.security.model.AuthResponse;
 import com.notes.security.model.ResetRequest;

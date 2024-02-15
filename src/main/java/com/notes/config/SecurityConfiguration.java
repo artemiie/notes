@@ -1,4 +1,4 @@
-package com.notes.security;
+package com.notes.config;
 
 import com.notes.jwt.JwtService;
 import com.notes.jwt.JwtTokenFilter;
@@ -28,7 +28,7 @@ public class SecurityConfiguration {
   private final UserDetailsService userDetailsService;
 
   @Bean
-  public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
+  public SecurityFilterChain securityConfig(final HttpSecurity httpSecurity) throws Exception {
     httpSecurity
         .csrf(AbstractHttpConfigurer::disable)
         .cors(AbstractHttpConfigurer::disable)

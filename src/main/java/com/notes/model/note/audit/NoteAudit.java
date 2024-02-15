@@ -1,23 +1,21 @@
-package com.notes.model;
+package com.notes.model.note.audit;
 
+import com.notes.model.note.Note;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 import lombok.*;
 
 @Entity
-@Table(name = "notes_history")
+@Table(name = "notes_audit")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoteHistory {
+public class NoteAudit {
   @Id
-  @GeneratedValue(generator = "note_history_seq")
-  @SequenceGenerator(
-      name = "note_history_seq",
-      sequenceName = "NOTE_HISTORY_SEQ",
-      allocationSize = 1)
+  @GeneratedValue(generator = "note_audit_seq")
+  @SequenceGenerator(name = "note_audit_seq", sequenceName = "NOTE_AUDIT_SEQ", allocationSize = 1)
   private Long id;
 
   @ManyToOne

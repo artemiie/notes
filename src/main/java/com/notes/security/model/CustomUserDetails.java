@@ -1,8 +1,8 @@
 package com.notes.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.notes.model.Role;
-import com.notes.model.User;
+import com.notes.model.user.Role;
+import com.notes.model.user.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

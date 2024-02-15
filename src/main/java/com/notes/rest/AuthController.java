@@ -1,6 +1,6 @@
 package com.notes.rest;
 
-import com.notes.model.User;
+import com.notes.model.user.User;
 import com.notes.rest.dto.UserDto;
 import com.notes.rest.dto.mapper.UserMapper;
 import com.notes.security.model.AuthRequest;

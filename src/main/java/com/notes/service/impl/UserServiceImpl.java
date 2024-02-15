@@ -1,7 +1,7 @@
 package com.notes.service.impl;
 
 import com.notes.exception.ResourceNotFoundException;
-import com.notes.model.User;
+import com.notes.model.user.User;
 import com.notes.repository.UserRepository;
 import com.notes.service.UserService;
 import lombok.RequiredArgsConstructor;

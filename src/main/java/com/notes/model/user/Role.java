@@ -1,4 +1,4 @@
-package com.notes.model;
+package com.notes.model.user;
 
 public enum Role {
   ADMIN,

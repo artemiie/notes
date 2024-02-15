@@ -1,9 +1,9 @@
 package com.notes.aop;
 
-import com.notes.model.ActionType;
-import com.notes.model.Note;
-import com.notes.model.NoteHistory;
-import com.notes.service.NoteHistoryService;
+import com.notes.model.note.Note;
+import com.notes.model.note.audit.ActionType;
+import com.notes.model.note.audit.NoteAudit;
+import com.notes.service.NoteAuditService;
 import java.time.OffsetDateTime;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @RequiredArgsConstructor
-public class NoteHistoryAspect {
-  private final NoteHistoryService noteHistoryService;
+public class NoteAuditAspect {
+  private final NoteAuditService noteAuditService;
 
   @Pointcut("within(com.notes.service.impl.NoteServiceImpl)")
   public void classPointcut() {}
@@ -27,22 +27,21 @@ public class NoteHistoryAspect {
   public void updateMethod() {}
 
   @AfterReturning(value = "classPointcut() && createMethod()", returning = "result")
-  public Object createNoteHistory(Object result) {
-    NoteHistory noteHistory = buildNoteHistory((Note) result, ActionType.CREATE);
-    noteHistoryService.create(noteHistory);
+  public Object createNoteAudit(Object result) {
+    NoteAudit noteAudit = buildNoteAudit((Note) result, ActionType.CREATE);
+    noteAuditService.create(noteAudit);
     return result;
   }
 
-  @AfterReturning(value = "classPointcut() && updateMethod()", returning =
-          "result")
-  public Object updateNoteHistory(Object result) {
-    NoteHistory noteHistory = buildNoteHistory((Note) result, ActionType.UPDATE);
-    noteHistoryService.create(noteHistory);
+  @AfterReturning(value = "classPointcut() && updateMethod()", returning = "result")
+  public Object updateNoteAudit(Object result) {
+    NoteAudit noteAudit = buildNoteAudit((Note) result, ActionType.UPDATE);
+    noteAuditService.create(noteAudit);
     return result;
   }
 
-  private NoteHistory buildNoteHistory(Note note, ActionType actionType) {
-    return NoteHistory.builder()
+  private NoteAudit buildNoteAudit(Note note, ActionType actionType) {
+    return NoteAudit.builder()
         .note(note)
         .title(note.getTitle())
         .body(note.getBody())

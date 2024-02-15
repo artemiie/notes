@@ -1,6 +1,6 @@
 package com.notes.service;
 
-import com.notes.model.User;
+import com.notes.model.user.User;
 
 public interface UserService {
 

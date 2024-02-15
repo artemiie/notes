@@ -1,6 +1,6 @@
 package com.notes.repository;
 
-import com.notes.model.User;
+import com.notes.model.user.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
           """
           SELECT exists(
             SELECT 1
-            FROM users u LEFT JOIN notes n 
+            FROM users u LEFT JOIN notes n
             ON u.id = n.user_id
             WHERE u.id = :userId
             AND n.id = :noteId

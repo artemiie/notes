@@ -6,8 +6,8 @@ import com.notes.jwt.JwtService;
 import com.notes.jwt.TokenType;
 import com.notes.mail.MailService;
 import com.notes.mail.MailType;
-import com.notes.model.Role;
-import com.notes.model.User;
+import com.notes.model.user.Role;
+import com.notes.model.user.User;
 import com.notes.security.model.AuthRequest;
 import com.notes.security.model.AuthResponse;
 import com.notes.security.model.ResetRequest;
@@ -83,7 +83,7 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public void reset(final ResetRequest request) {
     if (!jwtService.isValid(request.getToken(), TokenType.RESTORE)) {
-      throw new InvalidTokenException();
+      throw new InvalidTokenException("Invalid token");
     }
     String username = jwtService.field(request.getToken(), "subject");
     User user = userService.findBy(username);
@@ -114,7 +114,7 @@ public class AuthServiceImpl implements AuthService {
       String username = jwtService.field(token, "subject");
       userService.enable(username);
     } else {
-      throw new InvalidTokenException();
+      throw new InvalidTokenException("Invalid token");
     }
   }
 }

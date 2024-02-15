@@ -1,7 +1,7 @@
 package com.notes.rest;
 
-import com.notes.model.Note;
-import com.notes.model.User;
+import com.notes.model.note.Note;
+import com.notes.model.user.User;
 import com.notes.rest.dto.NoteDto;
 import com.notes.rest.dto.mapper.NoteMapper;
 import com.notes.security.SecurityService;

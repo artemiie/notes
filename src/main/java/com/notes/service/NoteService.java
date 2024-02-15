@@ -1,6 +1,7 @@
 package com.notes.service;
 
-import com.notes.model.Note;
+
+import com.notes.model.note.Note;
 
 public interface NoteService {
   Note findBy(Long noteId, Long userId);

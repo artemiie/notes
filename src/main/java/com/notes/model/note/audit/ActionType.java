@@ -1,4 +1,4 @@
-package com.notes.model;
+package com.notes.model.note.audit;
 
 public enum ActionType {
     CREATE,

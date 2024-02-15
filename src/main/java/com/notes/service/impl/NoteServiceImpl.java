@@ -1,7 +1,7 @@
 package com.notes.service.impl;
 
 import com.notes.exception.ResourceNotFoundException;
-import com.notes.model.Note;
+import com.notes.model.note.Note;
 import com.notes.repository.NoteRepository;
 import com.notes.service.NoteService;
 import java.time.OffsetDateTime;
