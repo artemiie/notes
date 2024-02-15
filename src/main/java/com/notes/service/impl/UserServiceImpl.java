@@ -20,9 +20,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public User update(User user) {
     User userOnDb = findBy(user.getUsername());
-
     user.setId(userOnDb.getId());
-
     return userRepository.save(user);
   }
 
