@@ -86,6 +86,6 @@ public class JwtServiceImpl implements JwtService {
   @Override
   public String field(String token, String by) {
     Map<String, Object> fields = fields(token);
-    return (String) fields.get("subject");
+    return (String) fields.get(by);
   }
 }
