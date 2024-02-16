@@ -41,6 +41,8 @@ public class SecurityConfiguration {
                 configurer
                     .requestMatchers("/api/v1/notes/**")
                     .authenticated()
+                    .requestMatchers("/api/v1/images/**")
+                    .authenticated()
                     .requestMatchers("/api/v1/auth/**")
                     .permitAll())
         .addFilterBefore(
