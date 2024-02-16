@@ -6,6 +6,7 @@ import com.notes.repository.UserRepository;
 import com.notes.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -13,11 +14,13 @@ public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
 
   @Override
+  @Transactional
   public User create(final User user) {
     return userRepository.save(user);
   }
 
   @Override
+  @Transactional
   public User update(User user) {
     User userOnDb = findBy(user.getUsername());
     user.setId(userOnDb.getId());
@@ -25,11 +28,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean existsByUsername(final String username) {
     return userRepository.existsByUsername(username);
   }
 
   @Override
+  @Transactional(readOnly = true)
   public User findBy(String username) {
     return userRepository
         .findByUsername(username)
@@ -40,11 +45,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean isNoteOwner(Long userId, Long noteId) {
     return userRepository.isNoteOwner(userId, noteId);
   }
 
   @Override
+  @Transactional
   public void enable(final String username) {
     User user = findBy(username);
     user.setEnabled(true);

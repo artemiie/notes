@@ -20,6 +20,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +32,7 @@ public class AuthServiceImpl implements AuthService {
   private final AuthenticationManager authenticationManager;
 
   @Override
+  @Transactional
   public void register(final User user) {
     if (userService.existsByUsername(user.getUsername())) {
       throw new ResourceAlreadyExistsException(
@@ -55,6 +57,7 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public AuthResponse login(AuthRequest authRequest) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
@@ -81,6 +84,7 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
+  @Transactional
   public void reset(final ResetRequest request) {
     if (!jwtService.isValid(request.getToken(), TokenType.RESTORE)) {
       throw new InvalidTokenException("Invalid token");
@@ -92,6 +96,7 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public void restore(final RestoreRequest request) {
     User user = userService.findBy(request.getUsername());
 
@@ -109,6 +114,7 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
+  @Transactional
   public void confirm(final String token) {
     if (jwtService.isValid(token, TokenType.ACTIVATION)) {
       String username = jwtService.field(token, "subject");
