@@ -4,8 +4,10 @@ import com.notes.exception.InvalidTokenException;
 import com.notes.exception.ResourceAlreadyExistsException;
 import com.notes.jwt.JwtService;
 import com.notes.jwt.TokenType;
-import com.notes.mail.MailService;
-import com.notes.mail.MailType;
+import com.notes.kafka.producer.KafkaProducer;
+import com.notes.mail.model.MailInfoActivation;
+import com.notes.mail.model.MailInfoLogin;
+import com.notes.mail.model.MailInfoRestore;
 import com.notes.model.user.Role;
 import com.notes.model.user.User;
 import com.notes.security.model.AuthRequest;
@@ -21,14 +23,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Properties;
-
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
   private final JwtService jwtService;
   private final UserService userService;
-  private final MailService mailService;
+  private final KafkaProducer kafkaProducer;
   private final PasswordEncoder passwordEncoder;
   private final AuthenticationManager authenticationManager;
 
@@ -48,15 +48,15 @@ public class AuthServiceImpl implements AuthService {
     String activationToken =
         jwtService.generateActivationToken(user.getUsername());
 
-    mailService.sendEmail(
-        MailType.ACTIVATION,
-        new Properties() {
-          {
-            put("activationToken", activationToken);
-            put("recipientEmail", user.getUsername());
-            put("recipientName", user.getName());
-          }
-        });
+    MailInfoActivation activation =
+        MailInfoActivation.
+            builder().
+            recipientName(user.getName()).
+            recipientEmail(user.getUsername()).
+            activationToken(activationToken).
+            build();
+
+    kafkaProducer.produce(activation);
   }
 
   @Override
@@ -72,14 +72,13 @@ public class AuthServiceImpl implements AuthService {
     String refreshToken =
         jwtService.generateRefreshToken(authRequest.getUsername());
 
-    mailService.sendEmail(
-        MailType.LOGIN,
-        new Properties() {
-          {
-            put("recipientEmail", user.getUsername());
-            put("recipientName", user.getName());
-          }
-        });
+    MailInfoLogin mailInfo = MailInfoLogin.
+        builder().
+        recipientName(user.getName()).
+        recipientEmail(user.getUsername()).
+        build();
+
+    kafkaProducer.produce(mailInfo);
 
     return AuthResponse.builder()
         .userId(user.getId())
@@ -107,15 +106,15 @@ public class AuthServiceImpl implements AuthService {
 
     String restoreToken = jwtService.generateRestoreToken(user.getUsername());
 
-    mailService.sendEmail(
-        MailType.RESTORE,
-        new Properties() {
-          {
-            put("restoreToken", restoreToken);
-            put("recipientEmail", user.getUsername());
-            put("recipientName", user.getName());
-          }
-        });
+    MailInfoRestore restore =
+        MailInfoRestore.
+            builder().
+            recipientName(user.getName()).
+            recipientEmail(user.getUsername()).
+            restoreToken(restoreToken).
+            build();
+
+    kafkaProducer.produce(restore);
   }
 
   @Override
