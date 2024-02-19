@@ -6,430 +6,868 @@
 	},
 	"item": [
 		{
-			"name": "AUTH",
+			"name": "DOCKER",
 			"item": [
 				{
-					"name": "REGISTRATION",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Artemie Fl\",\r\n    \"username\":\"artemie.fliostor@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"passwordConfirmation\":\"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "AUTH",
+					"item": [
+						{
+							"name": "REGISTRATION",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Artemie Fliostor\",\r\n    \"username\":\"artemie.fliostor@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"passwordConfirmation\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/auth/registration",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"registration"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/registration",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"registration"
-							]
+						{
+							"name": "CONFIRM",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NjY5NTA3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTY2OTUwNzksInR5cGUiOiJBQ1RJVkFUSU9OIiwiaWF0IjoxNzA3OTk2Njk1LCJleHAiOjE3MDgwOTY2OTV9.barZTSTk2fNhsnMobRnsX4OVJOUwYdcTH0xyze0jzPNWiNCw-dMPTx8AqG4r_uilqkPuOQNDKrn7es",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/auth/confirm",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"confirm"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LOGIN",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"artemie.fliostor@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RESTORE",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"rtemie.fliostor@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/auth/restore",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RESET",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\":\"llLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTUxNzAyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU1MTcwMjcsInR5cGUiOiJSRVNUT1JFIiwiaWF0IjoxNzA3OTk1NTE3LCJleHAiOjE3MDgwOTU1MTd9.oJ-iVWLxM5_oZJgSxRGkJP1CnfkPaaqbOjoS_lUKo17z6_N45pL_0N3V02dX290qXmkCvenSnECFV8MBWEHvIA\",\r\n    \"password\":\"qwerty\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/auth/reset",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"reset"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "CONFIRM",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NjY5NTA3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTY2OTUwNzksInR5cGUiOiJBQ1RJVkFUSU9OIiwiaWF0IjoxNzA3OTk2Njk1LCJleHAiOjE3MDgwOTY2OTV9.barZTSTk2fNhsnMobRnsX4OVJOUwYdcTH0xyze0jzPNWiNCw-dMPTx8AqG4r_uilqkPuOQNDKrn7es",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "NOTES",
+					"item": [
+						{
+							"name": "CREATE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODQzMzk0NzgyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDgzMzM5NDc4MjcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDgzMzM5NDcsImV4cCI6MTcwODQzMzk0N30.w1DiL6I3pP4_HyF6RvthYP1mi9WxrQDutSMRM-8Cz1qwfWntWKgwx0QO7u3hl-giMFM87mka8MfYDRPSz7_yOQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"title\":\"title\",\r\n   \"body\":\"body\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"notes"
+									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5MzM3NjM3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTMzNzYzNzksInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTMzNzYsImV4cCI6MTcwODA5MzM3Nn0.Xw4rZmrmMY6QBHt-Rf14s4G6IQDXw2oNPOLt43m88Ymzd9WLijYnIVnAH26t1p0Yzmv2HYauh_Smw_hUs5b4MQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/api/v1/notes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"notes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTQ1MjUyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU0NTI1MjcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTU0NTIsImV4cCI6MTcwODA5NTQ1Mn0.1LVZ3GuN5jS9_kcoiX7chsnqfRg01OuC-t1IYS0dN1u3uns3iGxsEvlYXJwPjeNeMjpLZvWi-GXMGrCrGJLEBg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "USER_ID",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"Updated note\",\r\n    \"body\": \"Updated body with random text.\",\r\n    \"creationDate\": \"2024-02-13T13:59:03.482993Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ONE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODQzMzk0NzgyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDgzMzM5NDc4MjcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDgzMzM5NDcsImV4cCI6MTcwODQzMzk0N30.w1DiL6I3pP4_HyF6RvthYP1mi9WxrQDutSMRM-8Cz1qwfWntWKgwx0QO7u3hl-giMFM87mka8MfYDRPSz7_yOQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "USER_ID",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/v1/notes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"notes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5MzM3NjM3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTMzNzYzNzksInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTMzNzYsImV4cCI6MTcwODA5MzM3Nn0.Xw4rZmrmMY6QBHt-Rf14s4G6IQDXw2oNPOLt43m88Ymzd9WLijYnIVnAH26t1p0Yzmv2HYauh_Smw_hUs5b4MQ",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/confirm",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"confirm"
-							]
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "LOGIN",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"artemie.fliostor@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "IMAGES",
+					"item": [
+						{
+							"name": "UPLOAD",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODE5OTQ0NTUxMiwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDgwOTk0NDU1MTIsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDgwOTk0NDUsImV4cCI6MTcwODE5OTQ0NX0.hOImthYoDthNkHmFh7VhDbSlHwXeIDE1BmwCLl313lOlVuQQlfrUfSaOOvsnwhFB2c3581_QPKHO2V0nS_D64g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "USER_ID",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Artemie/Desktop/og-spring.png"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/images/notes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"images",
+										"notes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
 								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"login"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "RESTORE",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"rtemie.fliostor@gmail.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/restore",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"restore"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "RESET",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"token\":\"llLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTUxNzAyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU1MTcwMjcsInR5cGUiOiJSRVNUT1JFIiwiaWF0IjoxNzA3OTk1NTE3LCJleHAiOjE3MDgwOTU1MTd9.oJ-iVWLxM5_oZJgSxRGkJP1CnfkPaaqbOjoS_lUKo17z6_N45pL_0N3V02dX290qXmkCvenSnECFV8MBWEHvIA\",\r\n    \"password\":\"qwerty\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/reset",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"reset"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
 		{
-			"name": "IMAGES",
+			"name": "LOCALHOST",
 			"item": [
 				{
-					"name": "UPLOAD",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODE5OTQ0NTUxMiwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDgwOTk0NDU1MTIsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDgwOTk0NDUsImV4cCI6MTcwODE5OTQ0NX0.hOImthYoDthNkHmFh7VhDbSlHwXeIDE1BmwCLl313lOlVuQQlfrUfSaOOvsnwhFB2c3581_QPKHO2V0nS_D64g",
-									"type": "string"
+					"name": "AUTH",
+					"item": [
+						{
+							"name": "REGISTRATION",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Fliostor Artemie\",\r\n    \"username\":\"artiom.flyoshtor@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"passwordConfirmation\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/registration",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"registration"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "USER_ID",
-								"value": "1",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/Artemie/Desktop/og-spring.png"
+						{
+							"name": "CONFIRM",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NjY5NTA3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTY2OTUwNzksInR5cGUiOiJBQ1RJVkFUSU9OIiwiaWF0IjoxNzA3OTk2Njk1LCJleHAiOjE3MDgwOTY2OTV9.barZTSTk2fNhsnMobRnsX4OVJOUwYdcTH0xyze0jzPNWiNCw-dMPTx8AqG4r_uilqkPuOQNDKrn7es",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/confirm",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"confirm"
+									]
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/images/notes/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"images",
-								"notes",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
+						{
+							"name": "LOGIN",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"artemie.fliostor@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "RESTORE",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"rtemie.fliostor@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/restore",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RESET",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\":\"llLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTUxNzAyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU1MTcwMjcsInR5cGUiOiJSRVNUT1JFIiwiaWF0IjoxNzA3OTk1NTE3LCJleHAiOjE3MDgwOTU1MTd9.oJ-iVWLxM5_oZJgSxRGkJP1CnfkPaaqbOjoS_lUKo17z6_N45pL_0N3V02dX290qXmkCvenSnECFV8MBWEHvIA\",\r\n    \"password\":\"qwerty\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/reset",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"reset"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "NOTES",
-			"item": [
-				{
-					"name": "CREATE",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODE5OTQ0NTUxMiwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDgwOTk0NDU1MTIsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDgwOTk0NDUsImV4cCI6MTcwODE5OTQ0NX0.hOImthYoDthNkHmFh7VhDbSlHwXeIDE1BmwCLl313lOlVuQQlfrUfSaOOvsnwhFB2c3581_QPKHO2V0nS_D64g",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n   \"title\":\"title\",\r\n   \"body\":\"body\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/notes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"notes"
-							]
-						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "DELETE",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5MzM3NjM3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTMzNzYzNzksInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTMzNzYsImV4cCI6MTcwODA5MzM3Nn0.Xw4rZmrmMY6QBHt-Rf14s4G6IQDXw2oNPOLt43m88Ymzd9WLijYnIVnAH26t1p0Yzmv2HYauh_Smw_hUs5b4MQ",
-									"type": "string"
+					"name": "NOTES",
+					"item": [
+						{
+							"name": "CREATE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODE5OTQ0NTUxMiwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDgwOTk0NDU1MTIsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDgwOTk0NDUsImV4cCI6MTcwODE5OTQ0NX0.hOImthYoDthNkHmFh7VhDbSlHwXeIDE1BmwCLl313lOlVuQQlfrUfSaOOvsnwhFB2c3581_QPKHO2V0nS_D64g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"title\":\"title\",\r\n   \"body\":\"body\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"notes"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/notes/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"notes",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
+						{
+							"name": "DELETE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5MzM3NjM3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTMzNzYzNzksInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTMzNzYsImV4cCI6MTcwODA5MzM3Nn0.Xw4rZmrmMY6QBHt-Rf14s4G6IQDXw2oNPOLt43m88Ymzd9WLijYnIVnAH26t1p0Yzmv2HYauh_Smw_hUs5b4MQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/notes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"notes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTQ1MjUyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU0NTI1MjcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTU0NTIsImV4cCI6MTcwODA5NTQ1Mn0.1LVZ3GuN5jS9_kcoiX7chsnqfRg01OuC-t1IYS0dN1u3uns3iGxsEvlYXJwPjeNeMjpLZvWi-GXMGrCrGJLEBg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "USER_ID",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"Updated note\",\r\n    \"body\": \"Updated body with random text.\",\r\n    \"creationDate\": \"2024-02-13T13:59:03.482993Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/notes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ONE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTQ1MjUyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU0NTI1MjcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTU0NTIsImV4cCI6MTcwODA5NTQ1Mn0.1LVZ3GuN5jS9_kcoiX7chsnqfRg01OuC-t1IYS0dN1u3uns3iGxsEvlYXJwPjeNeMjpLZvWi-GXMGrCrGJLEBg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "USER_ID",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/notes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"notes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "UPDATE",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTQ1MjUyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU0NTI1MjcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTU0NTIsImV4cCI6MTcwODA5NTQ1Mn0.1LVZ3GuN5jS9_kcoiX7chsnqfRg01OuC-t1IYS0dN1u3uns3iGxsEvlYXJwPjeNeMjpLZvWi-GXMGrCrGJLEBg",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
 							{
-								"key": "USER_ID",
-								"value": "1",
-								"type": "default"
+								"key": "token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5MzM3NjM3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTMzNzYzNzksInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTMzNzYsImV4cCI6MTcwODA5MzM3Nn0.Xw4rZmrmMY6QBHt-Rf14s4G6IQDXw2oNPOLt43m88Ymzd9WLijYnIVnAH26t1p0Yzmv2HYauh_Smw_hUs5b4MQ",
+								"type": "string"
 							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"Updated note\",\r\n    \"body\": \"Updated body with random text.\",\r\n    \"creationDate\": \"2024-02-13T13:59:03.482993Z\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/notes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"notes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET ONE",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5NTQ1MjUyNywic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTU0NTI1MjcsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTU0NTIsImV4cCI6MTcwODA5NTQ1Mn0.1LVZ3GuN5jS9_kcoiX7chsnqfRg01OuC-t1IYS0dN1u3uns3iGxsEvlYXJwPjeNeMjpLZvWi-GXMGrCrGJLEBg",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "USER_ID",
-								"value": "1",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/notes/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"notes",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODA5MzM3NjM3OSwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDc5OTMzNzYzNzksInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDc5OTMzNzYsImV4cCI6MTcwODA5MzM3Nn0.Xw4rZmrmMY6QBHt-Rf14s4G6IQDXw2oNPOLt43m88Ymzd9WLijYnIVnAH26t1p0Yzmv2HYauh_Smw_hUs5b4MQ",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
 						]
-					}
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				},
 				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
+					"name": "IMAGES",
+					"item": [
+						{
+							"name": "UPLOAD",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWllLmZsaW9zdG9yQGdtYWlsLmNvbSIsImV4cGlyZWRBdCI6MTcwODE5OTQ0NTUxMiwic3ViamVjdCI6ImFydGVtaWUuZmxpb3N0b3JAZ21haWwuY29tIiwiaXNzdWVkQXQiOjE3MDgwOTk0NDU1MTIsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MDgwOTk0NDUsImV4cCI6MTcwODE5OTQ0NX0.hOImthYoDthNkHmFh7VhDbSlHwXeIDE1BmwCLl313lOlVuQQlfrUfSaOOvsnwhFB2c3581_QPKHO2V0nS_D64g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "USER_ID",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Artemie/Desktop/og-spring.png"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/images/notes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"images",
+										"notes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
