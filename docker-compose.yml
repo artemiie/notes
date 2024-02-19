@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  spring-app:
+    build: .
+    container_name: notes_app
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    env_file:
+      - .env.docker
+
+  db:
+    image: postgres:16.2
+    container_name: db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: notes
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./src/main/resources/db-init:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
