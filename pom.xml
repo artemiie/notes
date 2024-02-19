@@ -26,6 +26,9 @@
         <preliquibase.version>1.5.0</preliquibase.version>
         <java.version>21</java.version>
         <jjwt.version>0.12.2</jjwt.version>
+
+        <checkstyle.version>3.2.2</checkstyle.version>
+        <checkstyle.path>config/checkstyle/</checkstyle.path>
     </properties>
 
     <dependencies>
@@ -133,6 +136,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -145,6 +149,35 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.version}</version>
+                <configuration>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <suppressionsFileExpression>
+                                checkstyle.suppressions.file
+                            </suppressionsFileExpression>
+                            <suppressionsLocation>
+                                ${checkstyle.path}checkstyle-suppressions.xml
+                            </suppressionsLocation>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
