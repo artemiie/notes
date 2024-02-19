@@ -16,7 +16,8 @@ public class ImageServiceImpl implements ImageService {
   private final ImageRepository imageRepository;
 
   @Override
-  public void upload(@NotNull @NotEmpty String noteId, MultipartFile file) {
+  public void upload(@NotNull @NotEmpty final String noteId,
+                     final MultipartFile file) {
     Note note = new Note();
     note.setId(Long.valueOf(noteId));
 

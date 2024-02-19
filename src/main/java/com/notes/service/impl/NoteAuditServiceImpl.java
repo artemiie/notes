@@ -12,7 +12,7 @@ public class NoteAuditServiceImpl implements NoteAuditService {
   private final NoteAuditRepository noteAuditRepository;
 
   @Override
-  public void create(NoteAudit noteAudit) {
+  public void create(final NoteAudit noteAudit) {
     noteAuditRepository.save(noteAudit);
   }
 }

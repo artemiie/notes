@@ -10,8 +10,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
-import lombok.*;
 
 @Entity
 @Table(name = "notes")
@@ -23,7 +28,10 @@ import lombok.*;
 public class Note {
   @Id
   @GeneratedValue(generator = "note_seq")
-  @SequenceGenerator(name = "note_seq", sequenceName = "NOTE_SEQ", allocationSize = 1)
+  @SequenceGenerator(
+      name = "note_seq",
+      sequenceName = "NOTE_SEQ",
+      allocationSize = 1)
   private Long id;
 
   @ManyToOne(fetch = FetchType.EAGER)

@@ -6,12 +6,13 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.crypto.SecretKey;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -25,14 +26,14 @@ public class JwtServiceImpl implements JwtService {
     key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
   }
 
-  public String generateAccessToken(String username) {
+  public String generateAccessToken(final String username) {
     return generate(
         TokenParameters.builder(username, jwtProperties.getAccess())
             .type(TokenType.ACCESS)
             .build());
   }
 
-  public String generateRefreshToken(String username) {
+  public String generateRefreshToken(final String username) {
     return generate(
         TokenParameters.builder(username, jwtProperties.getRefresh())
             .type(TokenType.REFRESH)
@@ -40,7 +41,7 @@ public class JwtServiceImpl implements JwtService {
   }
 
   @Override
-  public String generateRestoreToken(String username) {
+  public String generateRestoreToken(final String username) {
     return generate(
         TokenParameters.builder(username, jwtProperties.getRestore())
             .type(TokenType.RESTORE)
@@ -48,7 +49,7 @@ public class JwtServiceImpl implements JwtService {
   }
 
   @Override
-  public String generateActivationToken(String username) {
+  public String generateActivationToken(final String username) {
     return generate(
         TokenParameters.builder(username, jwtProperties.getActivation())
             .type(TokenType.ACTIVATION)
@@ -57,7 +58,13 @@ public class JwtServiceImpl implements JwtService {
 
   @Override
   public String generate(final TokenParameters params) {
-    Claims claims = Jwts.claims().subject(params.getSubject()).add(params.getFields()).build();
+    Claims claims =
+        Jwts.
+            claims().
+            subject(params.getSubject()).
+            add(params.getFields()).
+            build();
+
     return Jwts.builder()
         .claims(claims)
         .issuedAt(params.getIssuedAt())
@@ -69,9 +76,21 @@ public class JwtServiceImpl implements JwtService {
   @Override
   public boolean isValid(final String token, final TokenType tokenType) {
     try {
-      Jws<Claims> claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
-      TokenType type = TokenType.valueOf((String) claims.getPayload().get("type"));
-      return claims.getPayload().getExpiration().after(new Date()) && tokenType.equals(type);
+      Jws<Claims> claims =
+          Jwts.
+              parser().
+              verifyWith(key).
+              build().
+              parseSignedClaims(token);
+
+      TokenType type =
+          TokenType.valueOf((String) claims.getPayload().get("type"));
+
+      return claims.
+          getPayload().
+          getExpiration().
+          after(new Date()) && tokenType.equals(type);
+
     } catch (JwtException | IllegalArgumentException e) {
       return false;
     }
@@ -79,12 +98,13 @@ public class JwtServiceImpl implements JwtService {
 
   @Override
   public HashMap<String, Object> fields(final String token) {
-    Jws<Claims> claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
+    Jws<Claims> claims =
+        Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
     return new HashMap<>(claims.getPayload());
   }
 
   @Override
-  public String field(String token, String by) {
+  public String field(final String token, final String by) {
     Map<String, Object> fields = fields(token);
     return (String) fields.get(by);
   }

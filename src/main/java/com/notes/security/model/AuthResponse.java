@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class AuthResponse {
-    private Long userId;
-    private String access;
-    private String refresh;
+  private Long userId;
+  private String access;
+  private String refresh;
 }

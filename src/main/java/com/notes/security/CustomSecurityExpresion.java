@@ -12,12 +12,13 @@ import org.springframework.stereotype.Service;
 public class CustomSecurityExpresion {
   private final UserService userService;
 
-  public boolean canAccessNote(String noteId, Long userId) {
+  public boolean canAccessNote(final String noteId, final Long userId) {
     return userService.isNoteOwner(userId, Long.valueOf(noteId));
   }
 
-  public boolean canAccessNote(String noteId) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+  public boolean canAccessNote(final String noteId) {
+    Authentication authentication =
+        SecurityContextHolder.getContext().getAuthentication();
     CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
     Long userId = user.getId();
     return userService.isNoteOwner(userId, Long.valueOf(noteId));

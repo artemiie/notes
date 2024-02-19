@@ -11,10 +11,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Data;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +23,10 @@ import lombok.Data;
 public class User implements Serializable {
   @Id
   @GeneratedValue(generator = "user_seq")
-  @SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
+  @SequenceGenerator(
+      name = "user_seq",
+      sequenceName = "USER_SEQ",
+      allocationSize = 1)
   private Long id;
 
   private String name;

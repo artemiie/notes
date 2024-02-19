@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public User update(User user) {
+  public User update(final User user) {
     User userOnDb = findBy(user.getUsername());
     user.setId(userOnDb.getId());
     return userRepository.save(user);
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional(readOnly = true)
-  public User findBy(String username) {
+  public User findBy(final String username) {
     return userRepository
         .findByUsername(username)
         .orElseThrow(
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional(readOnly = true)
-  public boolean isNoteOwner(Long userId, Long noteId) {
+  public boolean isNoteOwner(final Long userId, final Long noteId) {
     return userRepository.isNoteOwner(userId, noteId);
   }
 

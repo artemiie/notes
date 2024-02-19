@@ -4,10 +4,11 @@ import com.notes.exception.ResourceNotFoundException;
 import com.notes.model.note.Note;
 import com.notes.repository.NoteRepository;
 import com.notes.service.NoteService;
-import java.time.OffsetDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.OffsetDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -16,34 +17,36 @@ public class NoteServiceImpl implements NoteService {
 
   @Override
   @Transactional(readOnly = true)
-  public Note findBy(Long id, Long userId) {
+  public Note findBy(final Long id, final Long userId) {
     return noteRepository
         .findByIdAndUserId(id, userId)
         .orElseThrow(
             () ->
                 new ResourceNotFoundException(
-                    "Note with id[%s] and userId[%s] not found.".formatted(id, userId)));
+                    "Note with id[%s] and userId[%s] not found."
+                        .formatted(id, userId)));
   }
 
   @Override
   @Transactional(readOnly = true)
-  public Note findBy(Long id) {
+  public Note findBy(final Long id) {
     return noteRepository
         .findById(id)
         .orElseThrow(
-            () -> new ResourceNotFoundException("Note with id[%s] not found.".formatted(id)));
+            () -> new ResourceNotFoundException("Note with id[%s] not found."
+                .formatted(id)));
   }
 
   @Override
   @Transactional
-  public Note create(Note note) {
+  public Note create(final Note note) {
     note.setCreationDate(OffsetDateTime.now());
     return noteRepository.save(note);
   }
 
   @Override
   @Transactional
-  public Note update(Note note, Long userId) {
+  public Note update(final Note note, final Long userId) {
     Note noteOnDb = findBy(note.getId(), userId);
     note.setUser(noteOnDb.getUser());
     note.setCreationDate(noteOnDb.getCreationDate());
@@ -52,7 +55,7 @@ public class NoteServiceImpl implements NoteService {
 
   @Override
   @Transactional
-  public void delete(Long noteId) {
+  public void delete(final Long noteId) {
     noteRepository.deleteById(noteId);
   }
 }

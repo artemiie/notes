@@ -3,6 +3,7 @@ package com.notes.config;
 import com.notes.jwt.JwtService;
 import com.notes.jwt.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,14 +29,18 @@ public class SecurityConfiguration {
   private final UserDetailsService userDetailsService;
 
   @Bean
-  public SecurityFilterChain securityConfig(final HttpSecurity httpSecurity) throws Exception {
+  @SneakyThrows
+  public SecurityFilterChain securityConfig(final HttpSecurity httpSecurity) {
     httpSecurity
         .csrf(AbstractHttpConfigurer::disable)
         .cors(AbstractHttpConfigurer::disable)
         .httpBasic(AbstractHttpConfigurer::disable)
         // No session will be created or used by Spring Security
         .sessionManagement(
-            configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            configurer ->
+                configurer.
+                    sessionCreationPolicy(
+                        SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(
             configurer ->
                 configurer
@@ -53,9 +58,10 @@ public class SecurityConfiguration {
   }
 
   @Bean
+  @SneakyThrows
   public AuthenticationManager authenticationManager(
-      final AuthenticationConfiguration authenticationConfiguration) throws Exception {
-    return authenticationConfiguration.getAuthenticationManager();
+      final AuthenticationConfiguration authConfiguration) {
+    return authConfiguration.getAuthenticationManager();
   }
 
   @Bean

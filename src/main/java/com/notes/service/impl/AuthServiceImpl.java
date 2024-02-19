@@ -14,13 +14,14 @@ import com.notes.security.model.ResetRequest;
 import com.notes.security.model.RestoreRequest;
 import com.notes.service.AuthService;
 import com.notes.service.UserService;
-import java.util.Properties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Properties;
 
 @Service
 @RequiredArgsConstructor
@@ -36,14 +37,16 @@ public class AuthServiceImpl implements AuthService {
   public void register(final User user) {
     if (userService.existsByUsername(user.getUsername())) {
       throw new ResourceAlreadyExistsException(
-          "User with username[%s] already exists.".formatted(user.getUsername()));
+          "User with username[%s] already exists."
+              .formatted(user.getUsername()));
     }
 
     user.getRoles().add(Role.USER);
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     userService.create(user);
 
-    String activationToken = jwtService.generateActivationToken(user.getUsername());
+    String activationToken =
+        jwtService.generateActivationToken(user.getUsername());
 
     mailService.sendEmail(
         MailType.ACTIVATION,
@@ -58,14 +61,16 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   @Transactional(readOnly = true)
-  public AuthResponse login(AuthRequest authRequest) {
+  public AuthResponse login(final AuthRequest authRequest) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
             authRequest.getUsername(), authRequest.getPassword()));
     User user = userService.findBy(authRequest.getUsername());
 
-    String accessToken = jwtService.generateAccessToken(authRequest.getUsername());
-    String refreshToken = jwtService.generateRefreshToken(authRequest.getUsername());
+    String accessToken =
+        jwtService.generateAccessToken(authRequest.getUsername());
+    String refreshToken =
+        jwtService.generateRefreshToken(authRequest.getUsername());
 
     mailService.sendEmail(
         MailType.LOGIN,
